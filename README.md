@@ -13,5 +13,5 @@ A two-stage method for financial tasks
 
 ### **3-Utilities**
 + **utils.py:** replay buffer implementation.
-+ **TD3_BC.py:** TD3 implementation with behavior cloning (BC)regularization.
++ **TD3_BC.py:** TD3 implementation with behavior cloning (BC) regularization.
 + **StockPortfolioEnv.py:** gym-style environment for asset allocation.
