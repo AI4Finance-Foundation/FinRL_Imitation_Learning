@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import random
 import gym
 import matplotlib
 import matplotlib.pyplot as plt
@@ -298,3 +299,54 @@ class StockPortfolioEnv(gym.Env):
         e = DummyVecEnv([lambda: self])
         obs = e.reset()
         return e, obs
+    
+
+def sample_from_env(i, env, weight_type="RETAIL"):    
+    random.seed(i)
+    
+    obs = env.reset()
+    done = False
+    
+    obs_ = []
+    next_obs_ = []
+    action_ = []
+    reward_ = []
+    done_ = []
+    
+    day = 0
+    stock_dimension = env.stock_dim
+    while not done:
+        if weight_type == "EQUAL": 
+            action = [1/stock_dimension] * stock_dimension    
+        elif weight_type == "RETAIL": 
+            # retail 
+            action = list(env.df.loc[day]["moribvol"])
+            day += 1
+        elif weight_type == "RANDOM": 
+            action = env.action_space.sample()
+            
+        # elif weight_type == "MEAN VAR": 
+        #     # retail 
+        #     action = list(mean_var_df.iloc[day, 1:])
+        #     day += 1
+            
+        ## Greedy
+        # action = [0] * 1 + [1] 
+    
+        next_obs, reward, done, _ = env.step(action)
+        if done: break
+        
+        obs_.append(obs)
+        next_obs_.append(next_obs)
+        action_.append(action)
+        reward_.append(reward)
+        done_.append(done)
+        obs = next_obs
+
+    return {
+        'observations': np.array(obs_),
+        'actions': np.array(action_),
+        'next_observations': np.array(next_obs_),
+        'rewards': np.array(reward_),
+        'terminals': np.array(done_),
+    }
