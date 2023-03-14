@@ -301,7 +301,7 @@ class StockPortfolioEnv(gym.Env):
         return e, obs
     
 
-def sample_from_env(i, env, weight_type="RETAIL"):    
+def sample_from_env(i, env, weights):    
     random.seed(i)
     
     obs = env.reset()
@@ -314,24 +314,9 @@ def sample_from_env(i, env, weight_type="RETAIL"):
     done_ = []
     
     day = 0
-    stock_dimension = env.stock_dim
     while not done:
-        if weight_type == "EQUAL": 
-            action = [1/stock_dimension] * stock_dimension    
-        elif weight_type == "RETAIL": 
-            # retail 
-            action = list(env.df.loc[day]["moribvol"])
-            day += 1
-        elif weight_type == "RANDOM": 
-            action = env.action_space.sample()
-            
-        # elif weight_type == "MEAN VAR": 
-        #     # retail 
-        #     action = list(mean_var_df.iloc[day, 1:])
-        #     day += 1
-            
-        ## Greedy
-        # action = [0] * 1 + [1] 
+        action = list(weights[day])
+        day += 1
     
         next_obs, reward, done, _ = env.step(action)
         if done: break
