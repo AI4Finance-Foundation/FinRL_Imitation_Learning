@@ -145,13 +145,13 @@ class StockPortfolioEnv(gym.Env):
             new_portfolio_value = self.portfolio_value * (1 + portfolio_return)
             self.portfolio_value = new_portfolio_value
             
-            # save into memory
-            self.portfolio_return_memory.append(portfolio_return)
-            self.date_memory.append(self.data.date.unique()[0])
-            self.asset_memory.append(new_portfolio_value)
+            # # save into memory
+            # self.portfolio_return_memory.append(portfolio_return)
+            # self.date_memory.append(self.data.date.unique()[0])
+            # self.asset_memory.append(new_portfolio_value)
 
             # the reward is the new portfolio value or end portfolo value
-            self.reward = new_portfolio_value - last_portfolio_value
+            self.reward = new_portfolio_value - self.initial_amount
             
             df = pd.DataFrame(self.portfolio_return_memory)
             df.columns = ["daily_return"]
