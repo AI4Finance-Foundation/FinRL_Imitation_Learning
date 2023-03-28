@@ -5,7 +5,7 @@ A two-stage method for financial tasks
 ## File Structure
 
 ### **1-Data**		
-+ **data:** daily price data of 11 selected XLK constitutes with technical indicators. Mean variance optimization weights available. Splitted into train and trade periods.
++ **data:** daily price data of 11 selected XLK constitutes with technical indicators. Our picked sample stocks are {"QCOM", "ADSK", "FSLR", "MSFT", "AMD", "ORCL", "INTU", "WU", "LRCX", "TXN", "CSCO"} : Mean variance optimization weights available. Splitted into train and trade periods.
 
 ### **2-Demo & Development**
 + **Retail Market Order Imbalance:** historical files
