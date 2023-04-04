@@ -4,6 +4,8 @@ A curriculum learning approach is a promising approach for analyzing financial b
 
 In complicated tasks such as Go and Atari games, imitation learning is often used to initialize deep neural networks that achieve human-level performance. Imitation learning involves training a model to imitate a human's behavior, typically using a dataset of expert demonstrations. This process provides a a starting point for further fine-tuning using reinforcement learning, which could learn through trial and error to find strategies that surpass human-level performance.
 
+## File Structure
+
 ```
 FinRL_Imitation_Learning
 ├── Data
@@ -22,6 +24,7 @@ FinRL_Imitation_Learning
 - [x] weight_initialization
 - [x] imitation_sandbox
 - [ ] reinforcement_learning
+
 
 **1-Stock Selection**
 
