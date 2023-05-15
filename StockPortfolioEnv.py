@@ -151,7 +151,7 @@ class StockPortfolioEnv(gym.Env):
             # self.asset_memory.append(new_portfolio_value)
 
             # the reward is the new portfolio value or end portfolo value
-            self.reward = new_portfolio_value - self.initial_amount
+            self.reward = (new_portfolio_value - last_portfolio_value) / last_portfolio_value
             
             df = pd.DataFrame(self.portfolio_return_memory)
             df.columns = ["daily_return"]
@@ -230,7 +230,7 @@ class StockPortfolioEnv(gym.Env):
             self.asset_memory.append(new_portfolio_value)
 
             # the reward is the new portfolio value or end portfolo value
-            self.reward = new_portfolio_value - last_portfolio_value
+            self.reward = (new_portfolio_value - last_portfolio_value) / last_portfolio_value
             # print("Step reward: ", self.reward)
             # self.reward = self.reward*self.reward_scaling
 
